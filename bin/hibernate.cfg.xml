@@ -33,6 +33,5 @@
         <!-- Names the annotated entity class -->
         <mapping class="org.javabrains.koushik.dto.UserDetails"/>
   
-           
     </session-factory>
 </hibernate-configuration>

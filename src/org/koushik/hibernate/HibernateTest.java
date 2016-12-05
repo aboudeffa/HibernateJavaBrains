@@ -20,7 +20,7 @@ public class HibernateTest {
 		addr.setState("State Name");
 		addr.setPincode("Pin Code");
 		
-		user.setHomeaddress(addr);
+		user.getListOfAddresses().add(addr);
 		
 		Address addr2 = new Address();
 		addr2.setStreet("Second Street Name");
@@ -28,7 +28,7 @@ public class HibernateTest {
 		addr2.setState("Second State Name");
 		addr2.setPincode("Second Pin Code");
 		
-		user.setOfficeaddress(addr2);
+		user.getListOfAddresses().add(addr2);
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();

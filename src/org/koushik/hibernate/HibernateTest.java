@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.javabrains.koushik.dto.Address;
 import org.javabrains.koushik.dto.UserDetails;
+import org.javabrains.koushik.dto.Vehicle;
 
 public class HibernateTest {
 
@@ -14,36 +15,18 @@ public class HibernateTest {
 //		user.setUserId(1);
 		user.setUserName("First User");
 		
-		Address addr = new Address();
-		addr.setStreet("Street Name");
-		addr.setCity("City Name");
-		addr.setState("State Name");
-		addr.setPincode("Pin Code");
+		Vehicle vehicle = new Vehicle();
+		vehicle.setVehicleName("Car");
 		
-		user.getListOfAddresses().add(addr);
-		
-		Address addr2 = new Address();
-		addr2.setStreet("Second Street Name");
-		addr2.setCity("Second City Name");
-		addr2.setState("Second State Name");
-		addr2.setPincode("Second Pin Code");
-		
-		user.getListOfAddresses().add(addr2);
+		user.setVehicle(vehicle);
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(user);
+		session.save(vehicle);
 		session.getTransaction().commit();
-		session.close();
-		
-		user = null;
-		
-		session = sessionFactory.openSession();
-		user = (UserDetails) session.get(UserDetails.class, 1);
-		session.close();
-		System.out.println(user.getListOfAddresses().size());
-		
+		session.close();		
 		
 	}
 

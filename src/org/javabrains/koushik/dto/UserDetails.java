@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,11 +20,9 @@ public class UserDetails {
 	@Id @GeneratedValue (strategy=GenerationType.AUTO)
 	private int userId;
 	private String userName;
-	@ElementCollection (fetch=FetchType.EAGER)
-	@JoinTable (name="USER_ADDRESS",
-			joinColumns=@JoinColumn (name="USER_ID")
-	)
-	private Collection<Address> listOfAddresses = new ArrayList();
+	@OneToOne
+	@JoinColumn (name="VEHICLE_ID")
+	private Vehicle vehicle;
 	
 	public int getUserId() {
 		return userId;
@@ -37,11 +36,11 @@ public class UserDetails {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Collection<Address> getListOfAddresses() {
-		return listOfAddresses;
+	public Vehicle getVehicle() {
+		return vehicle;
 	}
-	public void setListOfAddresses(Collection<Address> listOfAddresses) {
-		this.listOfAddresses = listOfAddresses;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 	
 }
